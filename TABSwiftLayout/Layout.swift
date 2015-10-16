@@ -31,7 +31,7 @@
 
 
 // MARK: - Extends UI/NS View to provide better support for programmatic constraints
-extension View {
+public extension View {
   
   
   /**
@@ -62,7 +62,7 @@ extension View {
   
   - returns: The constaints that were added to this view
   */
-  func pin(edges: EdgeMask, toView view: View, margins: EdgeMargins) -> [NSLayoutConstraint] {
+  public func pin(edges: EdgeMask, toView view: View, margins: EdgeMargins) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     if edges.contains(.Top) {
@@ -117,7 +117,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func center(axis: Axis, relativeTo view: View, offset: CGFloat) -> NSLayoutConstraint {
+  public func center(axis: Axis, relativeTo view: View, offset: CGFloat) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
     constraint.secondView = view

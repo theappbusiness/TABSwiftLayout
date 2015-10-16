@@ -25,12 +25,12 @@
 
 #if os(OSX)
   import AppKit
-  typealias View = NSView
-  typealias LayoutPriority = NSLayoutPriority
+  public typealias View = NSView
+  public typealias LayoutPriority = NSLayoutPriority
 #else
   import UIKit
-  typealias View = UIView
-  typealias LayoutPriority = UILayoutPriority
+  public typealias View = UIView
+  public typealias LayoutPriority = UILayoutPriority
 #endif
 
 

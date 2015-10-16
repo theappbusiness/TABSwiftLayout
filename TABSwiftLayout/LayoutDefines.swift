@@ -35,7 +35,7 @@ Defines an axis used for horizontal and vertical based constraints
 - Horizontal: Defines a horizontal axis
 - Vertical:   Defines a vertical axis
 */
-enum Axis {
+public enum Axis {
   case Horizontal
   case Vertical
 }
@@ -49,7 +49,7 @@ Defines an edge used for edge based constraints
 - Bottom: Defines a bottom edge
 - Right:  Defines a right edge
 */
-enum Edge {
+public enum Edge {
   case Top
   case Left
   case Bottom
@@ -59,36 +59,36 @@ enum Edge {
 /**
 *  Defines edge (bitmask) options for use in edge based constraints
 */
-struct EdgeMask: OptionSetType {
-  let rawValue: Int
-  init(rawValue: Int) { self.rawValue = rawValue }
+public struct EdgeMask: OptionSetType {
+  public let rawValue: Int
+  public init(rawValue: Int) { self.rawValue = rawValue }
   
   /// Defines a top edge
-  static var Top: EdgeMask   { return EdgeMask(rawValue: 1 << 0) }
+  public static var Top: EdgeMask   { return EdgeMask(rawValue: 1 << 0) }
   
   /// Defines a left edge
-  static var Left: EdgeMask  { return EdgeMask(rawValue: 1 << 1) }
+  public static var Left: EdgeMask  { return EdgeMask(rawValue: 1 << 1) }
   
   /// Defines a bottom edge
-  static var Bottom: EdgeMask   { return EdgeMask(rawValue: 1 << 2) }
+  public static var Bottom: EdgeMask   { return EdgeMask(rawValue: 1 << 2) }
   
   /// Defines a right edge
-  static var Right: EdgeMask  { return EdgeMask(rawValue: 1 << 3) }
+  public static var Right: EdgeMask  { return EdgeMask(rawValue: 1 << 3) }
   
   /// Defines a left and right edge
-  static var LeftAndRight: EdgeMask  { return Left.union(.Right) }
+  public static var LeftAndRight: EdgeMask  { return Left.union(.Right) }
   
   /// Defines a top and bottom edge
-  static var TopAndBottom: EdgeMask { return Top.union(.Bottom) }
+  public static var TopAndBottom: EdgeMask { return Top.union(.Bottom) }
   
   /// Defines all edges
-  static var All: EdgeMask { return Left.union(.Right).union(.Top).union(.Bottom) }
+  public static var All: EdgeMask { return Left.union(.Right).union(.Top).union(.Bottom) }
 }
 
 /**
 *  Defines edge margins for use in edge based constraints
 */
-struct EdgeMargins {
+public struct EdgeMargins {
   /// Defines a top edge marge
   var top: CGFloat
   
@@ -101,7 +101,7 @@ struct EdgeMargins {
   /// Defines a right edge margin
   var right: CGFloat
   
-  init() {
+  public init() {
     self.init(all: 0)
   }
   
