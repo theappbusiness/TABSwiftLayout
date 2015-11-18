@@ -42,51 +42,51 @@
 /**
 *  Defines various constraint traits (bitmask) that define the type of constraints applied to a view.
 */
-struct ConstraintsTraitMask: OptionSetType {
-  let rawValue: Int
-  init(rawValue: Int) { self.rawValue = rawValue }
+public struct ConstraintsTraitMask: OptionSetType {
+  public let rawValue: Int
+  public init(rawValue: Int) { self.rawValue = rawValue }
 
   
   /// No constraints applied
-  static var None: ConstraintsTraitMask   { return ConstraintsTraitMask(rawValue: 0) }
+  public static var None: ConstraintsTraitMask   { return ConstraintsTraitMask(rawValue: 0) }
   
   
   /// A top margin constraint is applied
-  static var TopMargin: ConstraintsTraitMask   { return ConstraintsTraitMask(rawValue: 1 << 0) }
+  public static var TopMargin: ConstraintsTraitMask   { return ConstraintsTraitMask(rawValue: 1 << 0) }
   
   /// A left margin constraint is applied
-  static var LeftMargin: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 1) }
+  public static var LeftMargin: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 1) }
   
   /// A right margin constraint is applied
-  static var RightMargin: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 2) }
+  public static var RightMargin: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 2) }
   
   /// A bottom margin constraint is applied
-  static var BottomMargin: ConstraintsTraitMask   { return ConstraintsTraitMask(rawValue: 1 << 3) }
+  public static var BottomMargin: ConstraintsTraitMask   { return ConstraintsTraitMask(rawValue: 1 << 3) }
   
   /// A horitzontal alignment constraint is applied
-  static var HorizontalAlignment: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 4) }
+  public static var HorizontalAlignment: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 4) }
   
   /// A vertical aligntment constraint is applied
-  static var VerticalAlignment: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 5) }
+  public static var VerticalAlignment: ConstraintsTraitMask  { return ConstraintsTraitMask(rawValue: 1 << 5) }
   
   /// A horizontal sizing constraint is applied
-  static var HorizontalSizing: ConstraintsTraitMask { return ConstraintsTraitMask(rawValue: 1 << 6) }
+  public static var HorizontalSizing: ConstraintsTraitMask { return ConstraintsTraitMask(rawValue: 1 << 6) }
   
   /// A vertical sizing constraint is applied
-  static var VerticalSizing: ConstraintsTraitMask { return ConstraintsTraitMask(rawValue: 1 << 7) }
+  public static var VerticalSizing: ConstraintsTraitMask { return ConstraintsTraitMask(rawValue: 1 << 7) }
   
   /// Horizontal margin constraints are applied (Left and Right)
-  static var HorizontalMargins: ConstraintsTraitMask  { return LeftMargin.union(RightMargin) }
+  public static var HorizontalMargins: ConstraintsTraitMask  { return LeftMargin.union(RightMargin) }
   
   /// Vertical margin constraints are applied (Top and Right)
-  static var VerticalMargins: ConstraintsTraitMask { return TopMargin.union(BottomMargin) }
+  public static var VerticalMargins: ConstraintsTraitMask { return TopMargin.union(BottomMargin) }
 }
 
 // MARK: - This extends UI/NS View to provide additional constraints support
-extension View {
+public extension View {
   
   /// Returns all constraints relevant to this view
-  var viewConstraints: [NSLayoutConstraint] {
+  public var viewConstraints: [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for constraint in self.constraints {
@@ -113,7 +113,7 @@ extension View {
   
   - returns: An array of constraints. If no constraints exist, an empty array is returned. This method never returns nil
   */
-  func constraintsForTrait(trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
+  public func constraintsForTrait(trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for constraint in self.constraints {
@@ -144,7 +144,7 @@ extension View {
   
   - returns: True if a constrait exists, false otherwise
   */
-  func containsTraits(trait: ConstraintsTraitMask) -> Bool {
+  public func containsTraits(trait: ConstraintsTraitMask) -> Bool {
     var traits = ConstraintsTraitMask.None
     
     for constraint in constraintsForTrait(trait) {
@@ -160,7 +160,7 @@ extension View {
 /**
 Defines an abstract representation of a constraint
 */
-protocol ConstraintDefinition {
+public protocol ConstraintDefinition {
   var priority: LayoutPriority { get }
   var constant: CGFloat { get set }
   var multiplier: CGFloat { get }
@@ -179,8 +179,8 @@ extension NSLayoutConstraint: ConstraintDefinition { }
 /**
 This extension provides a Swift value-type representation of NSLayoutConstraint
 */
-extension ConstraintDefinition {
-  var trait: ConstraintsTraitMask {
+public extension ConstraintDefinition {
+  public var trait: ConstraintsTraitMask {
     let left = self.firstAttribute == .Left || self.firstAttribute == .Leading
     let right = self.firstAttribute == .Right || self.firstAttribute == .Trailing
     let top = self.firstAttribute == .Top
@@ -211,17 +211,17 @@ extension ConstraintDefinition {
 /**
 *  A Swift value-type implementation of NSLayoutConstraint
 */
-struct Constraint: ConstraintDefinition {
+public struct Constraint: ConstraintDefinition {
   
-  internal(set) var priority: LayoutPriority
-  var constant: CGFloat
-  internal(set) var multiplier: CGFloat
-  internal(set) var relation: NSLayoutRelation
-  internal(set) var firstAttribute: NSLayoutAttribute
-  internal(set) var secondAttribute: NSLayoutAttribute
+  public internal(set) var priority: LayoutPriority
+  public var constant: CGFloat
+  public internal(set) var multiplier: CGFloat
+  public internal(set) var relation: NSLayoutRelation
+  public internal(set) var firstAttribute: NSLayoutAttribute
+  public internal(set) var secondAttribute: NSLayoutAttribute
   
   private var _enabled = true
-  var enabled: Bool {
+  public var enabled: Bool {
     get {
       return self._enabled
     }
@@ -236,12 +236,12 @@ struct Constraint: ConstraintDefinition {
     }
   }
   
-  unowned var firstView: View
-  weak var secondView: View?
+  public unowned var firstView: View
+  public weak var secondView: View?
   
   private weak var _constraint: NSLayoutConstraint?
   
-  init(view: View) {
+  public init(view: View) {
     self.firstView = view
     self.firstAttribute = .NotAnAttribute
     self.secondAttribute = .NotAnAttribute
@@ -258,7 +258,7 @@ struct Constraint: ConstraintDefinition {
     }
   }
   
-  mutating func constraint() -> NSLayoutConstraint {
+  public mutating func constraint() -> NSLayoutConstraint {
     if self._constraint == nil {
       self._constraint = NSLayoutConstraint(
         item: self.firstView,

@@ -90,16 +90,16 @@ public struct EdgeMask: OptionSetType {
 */
 public struct EdgeMargins {
   /// Defines a top edge marge
-  var top: CGFloat
+  public var top: CGFloat
   
   /// Defines a left edge margin
-  var left: CGFloat
+  public var left: CGFloat
   
   /// Defines a bottom edge margin
-  var bottom: CGFloat
+  public var bottom: CGFloat
   
   /// Defines a right edge margin
-  var right: CGFloat
+  public var right: CGFloat
   
   public init() {
     self.init(all: 0)
@@ -112,7 +112,7 @@ public struct EdgeMargins {
   
   - returns: An EdgeMargins instance with its edges defined equally
   */
-  init(all: CGFloat) {
+  public init(all: CGFloat) {
     self.init(top: all, left: all, bottom: all, right: all)
   }
   
@@ -127,7 +127,7 @@ public struct EdgeMargins {
   
   - returns: An EdgeMargins instance with its edges defined
   */
-  init(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
+  public init(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) {
     self.top = top
     self.left = left
     self.bottom = bottom
