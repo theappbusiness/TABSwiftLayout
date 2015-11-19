@@ -10,7 +10,7 @@ Using the standard Apple API is very cumbersome. Even something simple like cons
 
 ```swift
 let constraint = NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 100)
-    NSLayoutConstraint.activateConstraints([constraint])
+NSLayoutConstraint.activateConstraints([constraint])
 ```
 
 Now with SwiftLayout:
