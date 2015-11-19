@@ -29,7 +29,7 @@ Position:
 
 ```swift
 view.pin(.Top, toEdge: .Top, ofView: view.superview, margin: 15)
-view.pin(.Left.union(.Right), ofView: view.superview, margins: EdgeMarginsMask(0, 15, 0, 15))
+view.pin([.Left, .Right], ofView: view.superview, margins: EdgeMargins(top: 0, left: 15, bottom: 0, right: 15))
 ```
 
 Sizing:
@@ -54,7 +54,7 @@ view.centerVertically(toView: otherView)
 
 ## Caveats
 
-As with Apple's API, you MUST ensure your view has been added to a superview BEFORE setting any constraints on it. However with SwiftLayout, the contraints will NOT be added in this case, and a nice print() message will indicate that you've made a mistake.
+As with Apple's API, you MUST ensure your view has been added to a superview BEFORE setting any constraints on it. However with SwiftLayout, the constraints will NOT be added in this case, and a nice print() message will indicate that you've made a mistake.
 
 ## Additional API
 
@@ -70,7 +70,7 @@ This API differs slightly from Apple's implementation, since it will return auto
 let constraints = view.constraintsForTrait(.LeftMargin)
 ```
 
-This is extremely useful when you need to adjust the constant or replace a specific constraint entirely. Even better, its a bitmask, so you can request multiple constraints at once ;)
+This is extremely useful when you need to adjust the constant or replace a specific constraint entirely. Even better, its a bit mask, so you can request multiple constraints at once ;)
 
 ```swift
 if (view.containsTraits(.LeftMargin)) {
