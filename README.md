@@ -16,7 +16,7 @@ let constraint = NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .E
 Now with SwiftLayout:
 
 ```swift
-view.size(.Horizontal, relatedBy relation: .Equal, size: 100)
+view.size(.Horizontal, relatedBy: .Equal, size: 100)
 ```
 
 As you can see, SwiftLayout also removes the need for you to activate your constraints, and removes the redundancy required in Apple's API.
