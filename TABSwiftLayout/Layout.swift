@@ -208,7 +208,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func alignTop(view: View) -> NSLayoutConstraint {
+  func alignTop(toView view: View) -> NSLayoutConstraint {
     return pin(.Top, toEdge: .Top, ofView: view, margin: frame.minY)
   }
   
@@ -219,7 +219,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func alignLeft(view: View) -> NSLayoutConstraint {
+  func alignLeft(toView view: View) -> NSLayoutConstraint {
     return pin(.Left, toEdge: .Left, ofView: view, margin: frame.minX)
   }
   
@@ -230,7 +230,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func alignBottom(view: View) -> NSLayoutConstraint {
+  func alignBottom(toView view: View) -> NSLayoutConstraint {
     return pin(.Bottom, toEdge: .Bottom, ofView: view, margin: view.bounds.maxY - frame.maxY)
   }
   
@@ -241,7 +241,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func alignRight(view: View) -> NSLayoutConstraint {
+  func alignRight(toView view: View) -> NSLayoutConstraint {
     return pin(.Right, toEdge: .Right, ofView: view, margin: view.bounds.maxX - frame.maxX)
   }
   
@@ -252,7 +252,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func centerHorizontally(view: View) -> NSLayoutConstraint {
+  func centerHorizontally(toView view: View) -> NSLayoutConstraint {
     return center(.Horizontal, relativeTo: view, offset: 0)
   }
   
@@ -263,7 +263,7 @@ extension View {
   
   - returns: The constraint that was added
   */
-  func centerVertically(view: View) -> NSLayoutConstraint {
+  func centerVertically(toView view: View) -> NSLayoutConstraint {
     return center(.Vertical, relativeTo: view, offset: 0)
   }
   
