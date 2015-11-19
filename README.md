@@ -73,7 +73,7 @@ let constraints = view.constraintsForTrait(.LeftMargin)
 This is extremely useful when you need to adjust the constant or replace a specific constraint entirely. Even better, its a bit mask, so you can request multiple constraints at once ;)
 
 ```swift
-if (view.containsTraits(.LeftMargin)) {
+if view.containsTraits(.LeftMargin) {
   ...
 }
 ```
