@@ -28,15 +28,19 @@ Currently all the most common layout tasks can be completed with SwiftLayout.
 Position:
 
 ```swift
+view.pin(.Top, toEdge: .Top, ofView: view.superview) // default margin 0
 view.pin(.Top, toEdge: .Top, ofView: view.superview, margin: 15)
+view.pin([.Left, .Right], ofView: view.superview) // default margins (0, 0, 0, 0)
 view.pin([.Left, .Right], ofView: view.superview, margins: EdgeMargins(top: 0, left: 15, bottom: 0, right: 15))
 ```
 
 Sizing:
 
 ```swift
-view.size(.Horizontal, ofViews: [view], ratio: 1)
+view.size(.Horizontal, ofViews: [view]) // default ratio 1.0
+view.size(.Horizontal, ofViews: [view], ratio: 1.5)
 view.size(.Horizontal, relatedBy: .Equal, size: 100)
+view.size(.Horizontal, relativeTo: .Horizontal, ofView: view.superview) // default ratio 1.0
 view.size(.Horizontal, relativeTo: .Horizontal, ofView: view.superview, ratio: 0.5)
 ```
 
@@ -73,7 +77,7 @@ let constraints = view.constraintsForTrait(.LeftMargin)
 This is extremely useful when you need to adjust the constant or replace a specific constraint entirely. Even better, its a bit mask, so you can request multiple constraints at once ;)
 
 ```swift
-if view.containsTraits(.LeftMargin) {
+if view.containsTraits([.LeftMargin, .RightMargin]) {
   ...
 }
 ```

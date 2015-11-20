@@ -62,7 +62,7 @@ public extension View {
   
   - returns: The constaints that were added to this view
   */
-  public func pin(edges: EdgeMask, toView view: View, margins: EdgeMargins) -> [NSLayoutConstraint] {
+  public func pin(edges: EdgeMask, toView view: View, margins: EdgeMargins = EdgeMargins()) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     if edges.contains(.Top) {
@@ -95,7 +95,7 @@ public extension View {
   
   - returns: The constraint that was added
   */
-  func pin(edge: Edge, toEdge: Edge, ofView view: View, margin: CGFloat) -> NSLayoutConstraint {
+  func pin(edge: Edge, toEdge: Edge, ofView view: View, margin: CGFloat = 0) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
     constraint.secondView = view
@@ -117,7 +117,7 @@ public extension View {
   
   - returns: The constraint that was added
   */
-  public func center(axis: Axis, relativeTo view: View, offset: CGFloat) -> NSLayoutConstraint {
+  public func center(axis: Axis, relativeTo view: View, offset: CGFloat = 0) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
     constraint.secondView = view
@@ -139,7 +139,7 @@ public extension View {
   
   - returns: The constraint that was added
   */
-  func size(axis: Axis, ofViews views: [View], ratio: CGFloat) -> [NSLayoutConstraint] {
+  func size(axis: Axis, ofViews views: [View], ratio: CGFloat = 1.0) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for view: View in views {
@@ -181,7 +181,7 @@ public extension View {
   
   - returns: The constraint that was added
   */
-  func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat) -> NSLayoutConstraint {
+  func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1.0) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
     constraint.secondView = view
