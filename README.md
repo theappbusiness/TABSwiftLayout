@@ -1,4 +1,6 @@
-# Swift Layout
+![The App Business](https://github.com/theappbusiness/TABSwiftLayout/blob/master/assets/logo.png)
+
+# SwiftLayout
 
 ## What does it do?
 
