@@ -33,6 +33,12 @@
   public typealias LayoutPriority = UILayoutPriority
 #endif
 
+/// A required constraint.  Do not exceed this.
+public let LayoutPriorityRequired: LayoutPriority = 1000
+/// This is the priority level with which a button resists compressing its content.
+public let LayoutPriorityDefaultHigh: LayoutPriority = 750
+/// This is the priority level at which a button hugs its contents horizontally.
+public let LayoutPriorityDefaultLow: LayoutPriority = 250
 
 /**
 *  The classes included in this file extend NSLayoutConstraints, provide Swift implementations and cross-platform support for iOS, OSX, Watch and Apple TV
