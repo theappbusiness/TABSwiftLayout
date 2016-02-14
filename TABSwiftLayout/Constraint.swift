@@ -236,8 +236,19 @@ public struct Constraint: ConstraintDefinition {
     }
   }
   
-  public unowned var firstView: View
-  public weak var secondView: View?
+  public unowned var firstView: View {
+    didSet {
+      precondition(firstView.superview != nil, "The first view MUST be inserted into a superview before constraints can be applied")
+    }
+  }
+  
+  public weak var secondView: View? {
+    didSet {
+      if let view = secondView {
+        precondition(view.superview != nil, "The second view MUST be inserted into a superview before constraints can be applied")
+      }
+    }
+  }
   
   private weak var _constraint: NSLayoutConstraint?
   
@@ -251,11 +262,6 @@ public struct Constraint: ConstraintDefinition {
     self.priority = 250
     
     view.translatesAutoresizingMaskIntoConstraints = false
-    
-    guard view.superview != nil else {
-      print("The view MUST be inserted into a superview before constraints can be applied")
-      return
-    }
   }
   
   public mutating func constraint() -> NSLayoutConstraint {
