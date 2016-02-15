@@ -133,7 +133,7 @@ extension View {
     return layoutConstraint
   }
   
-  @available(*, deprecated=1.0) public func center(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
+  @available(*, deprecated=1.0, obsoleted=1.1, renamed="align") public func center(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     return align(axis, relativeTo: view, offset: offset, priority: priority)
   }
   
@@ -296,7 +296,7 @@ extension View {
     return align(.Horizontal, relativeTo: toView, offset: 0)
   }
   
-  @available(*, deprecated=1.0, obsoleted=1.1, message="Please use alignHorizontally:") public func centerHorizontally(toView: View) -> NSLayoutConstraint {
+  @available(*, deprecated=1.0, obsoleted=1.1, renamed="alignHorizontally") public func centerHorizontally(toView: View) -> NSLayoutConstraint {
     return alignHorizontally(toView)
   }
   
@@ -311,7 +311,7 @@ extension View {
     return align(.Vertical, relativeTo: toView, offset: 0)
   }
   
-  @available(*, deprecated=1.0, obsoleted=1.1, message="Please use alignVertically:") public func centerVertically(toView: View) -> NSLayoutConstraint {
+  @available(*, deprecated=1.0, obsoleted=1.1, renamed="alignVertically") public func centerVertically(toView: View) -> NSLayoutConstraint {
     return alignVertically(toView)
   }
   
