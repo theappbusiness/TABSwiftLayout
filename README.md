@@ -54,8 +54,8 @@ view.alignBottom(toView: otherView)
 view.alignLeft(toView: otherView)
 view.alignRight(toView: otherView)
 
-view.centerHorizontally(toView: otherView)
-view.centerVertically(toView: otherView)
+view.alignHorizontally(toView: otherView)
+view.alignVertically(toView: otherView)
 ```
 
 ## Caveats
