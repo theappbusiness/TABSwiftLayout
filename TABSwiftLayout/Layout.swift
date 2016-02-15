@@ -296,7 +296,7 @@ extension View {
     return align(.Horizontal, relativeTo: toView, offset: 0)
   }
   
-  @available(*, deprecated=1.0) public func centerHorizontally(toView: View) -> NSLayoutConstraint {
+  @available(*, deprecated=1.0, obsoleted=1.1, message="Please use alignHorizontally:") public func centerHorizontally(toView: View) -> NSLayoutConstraint {
     return alignHorizontally(toView)
   }
   
@@ -311,7 +311,7 @@ extension View {
     return align(.Vertical, relativeTo: toView, offset: 0)
   }
   
-  @available(*, deprecated=1.0) public func centerVertically(toView: View) -> NSLayoutConstraint {
+  @available(*, deprecated=1.0, obsoleted=1.1, message="Please use alignVertically:") public func centerVertically(toView: View) -> NSLayoutConstraint {
     return alignVertically(toView)
   }
   
