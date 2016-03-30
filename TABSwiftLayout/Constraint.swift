@@ -248,14 +248,7 @@ public struct Constraint: ConstraintDefinition {
     }
   }
   
-  public weak var secondView: View? {
-    didSet {
-      if let view = secondView {
-        let hasSuperViewOrIsSuperView = view.superview != nil || firstView.superview == view
-        precondition(hasSuperViewOrIsSuperView, "The second view MUST be inserted into a superview before constraints can be applied OR it MUST be the superview of the first view")
-      }
-    }
-  }
+  public weak var secondView: View?
   
   private weak var _constraint: NSLayoutConstraint?
   
