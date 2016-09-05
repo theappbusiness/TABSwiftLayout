@@ -1,6 +1,10 @@
-![The App Business](https://github.com/theappbusiness/TABSwiftLayout/blob/master/assets/logo.png)
+![The App Business](assets/logo.png)
 
-# SwiftLayout
+# TABSwiftLayout
+
+[![Build Status](https://travis-ci.org/theappbusiness/TABSwiftLayout.svg?branch=master)](https://travis-ci.org/theappbusiness/TABSwiftLayout)
+[![](https://img.shields.io/cocoapods/v/TABSwiftLayout.svg)](https://cocoapods.org/pods/TABSwiftLayout)
+[![](https://img.shields.io/cocoapods/p/TABSwiftLayout.svg?style=flat)](https://cocoapods.org/pods/TABSwiftLayout)
 
 ## What does it do?
 
