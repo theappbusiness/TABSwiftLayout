@@ -96,3 +96,17 @@ extension View {
   }
   
 }
+
+public extension View {
+
+  @available(*, deprecated:3.0.0, renamed: "constraints(forTrait:)")
+  public func constraintsForTrait(_ trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
+    return constraints(forTrait: trait)
+  }
+  
+  @available(*, deprecated:3.0.0, renamed: "contains(trait:)")
+  public func contains(_ trait: ConstraintsTraitMask) -> Bool {
+    return contains(trait: trait)
+  }
+}
+

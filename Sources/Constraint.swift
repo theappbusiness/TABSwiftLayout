@@ -119,7 +119,7 @@ public extension View {
   
   - returns: An array of constraints. If no constraints exist, an empty array is returned. This method never returns nil
   */
-  public func constraintsForTrait(_ trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
+  public func constraints(forTrait trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for constraint in self.constraints {
@@ -150,10 +150,10 @@ public extension View {
   
   - returns: True if a constrait exists, false otherwise
   */
-  public func containsTraits(_ trait: ConstraintsTraitMask) -> Bool {
+  public func contains(trait: ConstraintsTraitMask) -> Bool {
     var traits = ConstraintsTraitMask.None
     
-    for constraint in constraintsForTrait(trait) {
+    for constraint in constraints(forTrait: trait) {
       traits.insert(constraint.trait)
     }
     

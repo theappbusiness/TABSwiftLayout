@@ -1,4 +1,4 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode8.0
 script:
-  - xcodebuild -scheme TABSwiftLayout -configuration Debug -sdk iphonesimulator9.3 -destination "OS=9.3,name=iPad 2"
+  - xcodebuild -scheme TABSwiftLayout -configuration Debug -sdk iphonesimulator10.0 -destination "OS=10.0,name=iPad 2"
