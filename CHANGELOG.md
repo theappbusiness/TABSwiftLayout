@@ -30,3 +30,7 @@
 	-  `alignHorizontally(_:)` to `alignHorizontally(toView:)`
 
 	-  `alignVertically(_:)` to `alignVertically(toView:)`
+
+	-  `containsTraits(_:)` to `contains(trait:)`
+
+	-  `constraintsForTrait(_:)` to `constraints(forTrait:)`

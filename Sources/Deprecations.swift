@@ -105,7 +105,7 @@ public extension View {
   }
   
   @available(*, deprecated:3.0.0, renamed: "contains(trait:)")
-  public func contains(_ trait: ConstraintsTraitMask) -> Bool {
+  public func containsTraits(_ trait: ConstraintsTraitMask) -> Bool {
     return contains(trait: trait)
   }
 }
