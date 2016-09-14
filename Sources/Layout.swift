@@ -221,21 +221,21 @@ extension View {
     return [horizontal, vertical]
   }
   
-  public func align(edges: EdgeMask, toView: View) {
+  public func align(edges: EdgeMask, toView view: View) {
     if edges.contains(.Left) {
-      alignLeft(toView: toView)
+      alignLeft(toView: view)
     }
     
     if edges.contains(.Right) {
-      alignRight(toView: toView)
+      alignRight(toView: view)
     }
     
     if edges.contains(.Top) {
-      alignTop(toView: toView)
+      alignTop(toView: view)
     }
     
     if edges.contains(.Bottom) {
-      alignBottom(toView: toView)
+      alignBottom(toView: view)
     }
   }
   
