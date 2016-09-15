@@ -15,14 +15,14 @@ A library for providing a flexible, yet very minimal API for dealing with AutoLa
 Using the standard Apple API is very cumbersome. Even something simple like constraining the width of a view:
 
 ```swift
-let constraint = NSLayoutConstraint(item: view, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 100)
+let constraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 100)
 NSLayoutConstraint.activateConstraints([constraint])
 ```
 
 Now with SwiftLayout:
 
 ```swift
-view.size(.Horizontal, relatedBy: .Equal, size: 100)
+view.size(.horizontal, relatedBy: .equal, size: 100)
 ```
 
 As you can see, SwiftLayout also removes the need for you to activate your constraints, and removes the redundancy required in Apple's API.
@@ -34,8 +34,8 @@ Currently all the most common layout tasks can be completed with SwiftLayout.
 Position:
 
 ```swift
-view.pin(edge: .Top, toEdge: .Top, ofView: view.superview) // default margin 0
-view.pin(edge: .Top, toEdge: .Top, ofView: view.superview, margin: 15)
+view.pin(edge: .top, toEdge: .top, ofView: view.superview) // default margin 0
+view.pin(edge: .top, toEdge: .top, ofView: view.superview, margin: 15)
 view.pin(edges: [.Left, .Right], ofView: view.superview) // default margins (0, 0, 0, 0)
 view.pin(edges: [.Left, .Right], ofView: view.superview, margins: EdgeMargins(top: 0, left: 15, bottom: 0, right: 15))
 ```
@@ -43,11 +43,11 @@ view.pin(edges: [.Left, .Right], ofView: view.superview, margins: EdgeMargins(to
 Sizing:
 
 ```swift
-view.size(axis: .Horizontal, ofViews: [view]) // default ratio 1.0
-view.size(axis: .Horizontal, ofViews: [view], ratio: 1.5)
-view.size(axis: .Horizontal, relatedBy: .Equal, size: 100)
-view.size(axis: .Horizontal, relativeTo: .Horizontal, ofView: view.superview) // default ratio 1.0
-view.size(axis: .Horizontal, relativeTo: .Horizontal, ofView: view.superview, ratio: 0.5)
+view.size(axis: .horizontal, ofViews: [view]) // default ratio 1.0
+view.size(axis: .horizontal, ofViews: [view], ratio: 1.5)
+view.size(axis: .horizontal, relatedBy: .equal, size: 100)
+view.size(axis: .horizontal, relativeTo: .horizontal, ofView: view.superview) // default ratio 1.0
+view.size(axis: .horizontal, relativeTo: .horizontal, ofView: view.superview, ratio: 0.5)
 ```
 
 Alignment (convenience methods):
@@ -77,7 +77,7 @@ let constraints = view.viewConstraints
 This API differs slightly from Apple's implementation, since it will return automatically scan through the superview as well, in order to return ALL constraints currently being applied to this view.
 
 ```swift
-let constraints = view.constraints(forTrait: .LeftMargin)
+let constraints = view.constraints(forTrait: .leftMargin)
 ```
 
 This is extremely useful when you need to adjust the constant or replace a specific constraint entirely. Even better, its a bit mask, so you can request multiple constraints at once ;)
