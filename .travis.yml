@@ -1,4 +1,5 @@
 language: objective-c
 osx_image: xcode8.0
 script:
+  - xcodebuild -showsdks
   - xcodebuild -scheme TABSwiftLayout -configuration Debug -sdk iphonesimulator10.0 -destination "OS=10.0,name=iPhone 6s Plus"
