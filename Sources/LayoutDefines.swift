@@ -37,8 +37,8 @@ Defines an axis used for horizontal and vertical based constraints
 - Vertical:   Defines a vertical axis
 */
 public enum Axis {
-  case Horizontal
-  case Vertical
+  case horizontal
+  case vertical
 }
 
 
@@ -51,16 +51,16 @@ Defines an edge used for edge based constraints
 - Right:  Defines a right edge
 */
 public enum Edge {
-  case Top
-  case Left
-  case Bottom
-  case Right
+  case top
+  case left
+  case bottom
+  case right
 }
 
 /**
 *  Defines edge (bitmask) options for use in edge based constraints
 */
-public struct EdgeMask: OptionSetType {
+public struct EdgeMask: OptionSet {
   public let rawValue: Int
   public init(rawValue: Int) { self.rawValue = rawValue }
   
@@ -146,10 +146,10 @@ Converts an Axis to its associated sizing attribute
 */
 func sizeAttribute(axis: Axis) -> NSLayoutAttribute {
   switch axis {
-  case .Horizontal:
-    return .Width
-  case .Vertical:
-    return .Height
+  case .horizontal:
+    return .width
+  case .vertical:
+    return .height
   }
 }
 
@@ -162,10 +162,10 @@ Converts an Axis to its associated alignment attribute
 */
 func centerAttribute(axis: Axis) -> NSLayoutAttribute {
   switch axis {
-  case .Horizontal:
-    return .CenterX
-  case .Vertical:
-    return .CenterY
+  case .horizontal:
+    return .centerX
+  case .vertical:
+    return .centerY
   }
 }
 
@@ -178,14 +178,14 @@ Converts an Edge to its associated edge attribute
 */
 func edgeAttribute(edge: Edge) -> NSLayoutAttribute {
   switch edge {
-  case .Top:
-    return .Top
-  case .Left:
-    return .Left
-  case .Bottom:
-    return .Bottom
-  case .Right:
-    return .Right
+  case .top:
+    return .top
+  case .left:
+    return .left
+  case .bottom:
+    return .bottom
+  case .right:
+    return .right
   }
 }
 

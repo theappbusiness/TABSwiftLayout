@@ -48,7 +48,7 @@ public let LayoutPriorityDefaultLow: LayoutPriority = 250
 /**
 *  Defines various constraint traits (bitmask) that define the type of constraints applied to a view.
 */
-public struct ConstraintsTraitMask: OptionSetType {
+public struct ConstraintsTraitMask: OptionSet {
   public let rawValue: Int
   public init(rawValue: Int) { self.rawValue = rawValue }
 
@@ -119,7 +119,7 @@ public extension View {
   
   - returns: An array of constraints. If no constraints exist, an empty array is returned. This method never returns nil
   */
-  public func constraintsForTrait(trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
+  public func constraints(forTrait trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for constraint in self.constraints {
@@ -150,10 +150,10 @@ public extension View {
   
   - returns: True if a constrait exists, false otherwise
   */
-  public func containsTraits(trait: ConstraintsTraitMask) -> Bool {
+  public func contains(trait: ConstraintsTraitMask) -> Bool {
     var traits = ConstraintsTraitMask.None
     
-    for constraint in constraintsForTrait(trait) {
+    for constraint in constraints(forTrait: trait) {
       traits.insert(constraint.trait)
     }
     
@@ -187,16 +187,16 @@ This extension provides a Swift value-type representation of NSLayoutConstraint
 */
 public extension ConstraintDefinition {
   public var trait: ConstraintsTraitMask {
-    let left = self.firstAttribute == .Left || self.firstAttribute == .Leading
-    let right = self.firstAttribute == .Right || self.firstAttribute == .Trailing
-    let top = self.firstAttribute == .Top
-    let bottom = self.firstAttribute == .Bottom
+    let left = self.firstAttribute == .left || self.firstAttribute == .leading
+    let right = self.firstAttribute == .right || self.firstAttribute == .trailing
+    let top = self.firstAttribute == .top
+    let bottom = self.firstAttribute == .bottom
     
-    let width = self.firstAttribute == .Width
-    let height = self.firstAttribute == .Height
+    let width = self.firstAttribute == .width
+    let height = self.firstAttribute == .height
     
-    let centerX = self.firstAttribute == .CenterX
-    let centerY = self.firstAttribute == .CenterY
+    let centerX = self.firstAttribute == .centerX
+    let centerY = self.firstAttribute == .centerY
     
     if width { return .HorizontalSizing }
     if height { return .VerticalSizing }
@@ -235,9 +235,9 @@ public struct Constraint: ConstraintDefinition {
       self._enabled = enabled
       
       if (self.enabled) {
-        NSLayoutConstraint.activateConstraints([self.constraint()])
+        NSLayoutConstraint.activate([self.constraint()])
       } else {
-        NSLayoutConstraint.deactivateConstraints([self.constraint()])
+        NSLayoutConstraint.deactivate([self.constraint()])
       }
     }
   }
@@ -254,11 +254,11 @@ public struct Constraint: ConstraintDefinition {
   
   public init(view: View) {
     self.firstView = view
-    self.firstAttribute = .NotAnAttribute
-    self.secondAttribute = .NotAnAttribute
+    self.firstAttribute = .notAnAttribute
+    self.secondAttribute = .notAnAttribute
     self.constant = 0
     self.multiplier = 1
-    self.relation = .Equal
+    self.relation = .equal
     self.priority = 250
     
     view.translatesAutoresizingMaskIntoConstraints = false
