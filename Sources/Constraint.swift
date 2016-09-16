@@ -226,7 +226,7 @@ public struct Constraint: ConstraintDefinition {
   public internal(set) var firstAttribute: NSLayoutAttribute
   public internal(set) var secondAttribute: NSLayoutAttribute
   
-  fileprivate var _enabled = true
+  private var _enabled = true
   public var enabled: Bool {
     get {
       return self._enabled
@@ -250,7 +250,7 @@ public struct Constraint: ConstraintDefinition {
   
   public weak var secondView: View?
   
-  fileprivate weak var _constraint: NSLayoutConstraint?
+  private weak var _constraint: NSLayoutConstraint?
   
   public init(view: View) {
     self.firstView = view
