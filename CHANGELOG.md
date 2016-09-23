@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.3
+## 3.0
 
 ## New Features
 - Support for Swift 3
