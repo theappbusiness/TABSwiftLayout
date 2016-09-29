@@ -96,6 +96,7 @@ extension View {
    
    - returns: The constraint that was added
    */
+  @discardableResult
   public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: NSLayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
@@ -120,6 +121,7 @@ extension View {
    
    - returns: The constraint that was added
    */
+  @discardableResult
   public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
@@ -143,6 +145,7 @@ extension View {
    
    - returns: The constraint that was added
    */
+  @discardableResult
   public func size(axis: Axis, ofViews views: [View], ratio: CGFloat = 1, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
@@ -162,6 +165,7 @@ extension View {
    
    - returns: The constraint that was added
    */
+  @discardableResult
   public func size(axis: Axis, relatedBy relation: NSLayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
@@ -186,6 +190,7 @@ extension View {
    
    - returns: The constraint that was added
    */
+  @discardableResult
   public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
@@ -215,6 +220,7 @@ extension View {
    
    - returns: The constraint that was added
    */
+  @discardableResult
   public func size(width: CGFloat, height: CGFloat, relation: NSLayoutRelation = .equal, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
     let horizontal = size(axis: .horizontal, relatedBy: relation, size: width, priority: priority)
     let vertical = size(axis: .vertical, relatedBy: relation, size: height, priority: priority)
