@@ -65,25 +65,25 @@ public struct EdgeMask: OptionSet {
   public init(rawValue: Int) { self.rawValue = rawValue }
   
   /// Defines a top edge
-  public static var Top: EdgeMask   { return EdgeMask(rawValue: 1 << 0) }
+  public static var top: EdgeMask   { return EdgeMask(rawValue: 1 << 0) }
   
   /// Defines a left edge
-  public static var Left: EdgeMask  { return EdgeMask(rawValue: 1 << 1) }
+  public static var left: EdgeMask  { return EdgeMask(rawValue: 1 << 1) }
   
   /// Defines a bottom edge
-  public static var Bottom: EdgeMask   { return EdgeMask(rawValue: 1 << 2) }
+  public static var bottom: EdgeMask   { return EdgeMask(rawValue: 1 << 2) }
   
   /// Defines a right edge
-  public static var Right: EdgeMask  { return EdgeMask(rawValue: 1 << 3) }
+  public static var right: EdgeMask  { return EdgeMask(rawValue: 1 << 3) }
   
   /// Defines a left and right edge
-  public static var LeftAndRight: EdgeMask  { return Left.union(.Right) }
+  public static var leftAndRight: EdgeMask  { return left.union(.right) }
   
   /// Defines a top and bottom edge
-  public static var TopAndBottom: EdgeMask { return Top.union(.Bottom) }
+  public static var topAndBottom: EdgeMask { return top.union(.bottom) }
   
   /// Defines all edges
-  public static var All: EdgeMask { return Left.union(.Right).union(.Top).union(.Bottom) }
+  public static var all: EdgeMask { return left.union(.right).union(.top).union(.bottom) }
 }
 
 /**

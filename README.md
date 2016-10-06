@@ -36,8 +36,8 @@ Position:
 ```swift
 view.pin(edge: .top, toEdge: .top, ofView: view.superview) // default margin 0
 view.pin(edge: .top, toEdge: .top, ofView: view.superview, margin: 15)
-view.pin(edges: [.Left, .Right], ofView: view.superview) // default margins (0, 0, 0, 0)
-view.pin(edges: [.Left, .Right], ofView: view.superview, margins: EdgeMargins(top: 0, left: 15, bottom: 0, right: 15))
+view.pin(edges: [.left, .right], ofView: view.superview) // default margins (0, 0, 0, 0)
+view.pin(edges: [.left, .right], ofView: view.superview, margins: EdgeMargins(top: 0, left: 15, bottom: 0, right: 15))
 ```
 
 Sizing:
@@ -83,7 +83,7 @@ let constraints = view.constraints(forTrait: .leftMargin)
 This is extremely useful when you need to adjust the constant or replace a specific constraint entirely. Even better, its a bit mask, so you can request multiple constraints at once ;)
 
 ```swift
-if view.contains(trait: [.LeftMargin, .RightMargin]) {
+if view.contains(trait: [.leftMargin, .rightMargin]) {
   ...
 }
 ```
