@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.1
+
+- Added @discardableResult to Layout.swift functions  
+
+- Updated EdgeMask's vars to lowercase
+
 ## 2.0.0
 
 ## New Features
