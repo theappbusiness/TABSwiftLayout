@@ -77,13 +77,13 @@ public struct EdgeMask: OptionSet {
   public static var right: EdgeMask  { return EdgeMask(rawValue: 1 << 3) }
   
   /// Defines a left and right edge
-  public static var leftAndRight: EdgeMask  { return left.union(.right) }
+  public static var leftAndRight: EdgeMask  { return [left, right] }
   
   /// Defines a top and bottom edge
-  public static var topAndBottom: EdgeMask { return top.union(.bottom) }
+  public static var topAndBottom: EdgeMask { return [top, bottom] }
   
   /// Defines all edges
-  public static var all: EdgeMask { return left.union(.right).union(.top).union(.bottom) }
+  public static var all: EdgeMask { return [left, right, top, bottom] }
 }
 
 /**
