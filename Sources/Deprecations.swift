@@ -8,16 +8,22 @@
 
 import Foundation
 
+#if os(iOS)
+  import UIKit
+#else
+  import AppKit
+#endif
+
 extension View {
   
   @available(*, deprecated:2.0.0, renamed: "pin(edges:toView:relation:margins:priority:)")
-  public func pin(_ edges: EdgeMask, toView view: View, relation: NSLayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func pin(_ edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
     return pin(edges: edges, toView: view, relation: relation, margins: margins, priority: priority)
   }
   
 
   @available(*, deprecated:2.0.0, renamed: "pin(edge:toEdge:ofView:relation:margin:priority:)")
-  public func pin(_ edge: Edge, toEdge: Edge, ofView view: View, relation: NSLayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
+  public func pin(_ edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     return pin(edge: edge, toEdge: toEdge, ofView: view, relation: relation, margin: margin, priority: priority)
   }
 
@@ -32,7 +38,7 @@ extension View {
   }
   
   @available(*, deprecated:2.0.0, renamed: "size(axis:relatedBy:size:priority:)")
-  public func size(_ axis: Axis, relatedBy relation: NSLayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
+  public func size(_ axis: Axis, relatedBy relation: LayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     return self.size(axis: axis, relatedBy: relation, size: size, priority: priority)
   }
   

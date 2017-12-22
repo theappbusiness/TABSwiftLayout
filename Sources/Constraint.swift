@@ -23,14 +23,10 @@
   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if os(OSX)
-  import AppKit
-  public typealias View = NSView
-  public typealias LayoutPriority = NSLayoutPriority
-#else
+#if os(iOS)
   import UIKit
-  public typealias View = UIView
-  public typealias LayoutPriority = UILayoutPriority
+#else
+  import AppKit
 #endif
 
 /// A required constraint.  Do not exceed this.
@@ -170,9 +166,9 @@ public protocol ConstraintDefinition {
   var priority: LayoutPriority { get }
   var constant: CGFloat { get set }
   var multiplier: CGFloat { get }
-  var relation: NSLayoutRelation { get }
-  var firstAttribute: NSLayoutAttribute { get }
-  var secondAttribute: NSLayoutAttribute { get }
+  var relation: LayoutRelation { get }
+  var firstAttribute: LayoutAttribute { get }
+  var secondAttribute: LayoutAttribute { get }
   var trait: ConstraintsTraitMask { get }
 }
 
@@ -222,9 +218,9 @@ public struct Constraint: ConstraintDefinition {
   public internal(set) var priority: LayoutPriority
   public var constant: CGFloat
   public internal(set) var multiplier: CGFloat
-  public internal(set) var relation: NSLayoutRelation
-  public internal(set) var firstAttribute: NSLayoutAttribute
-  public internal(set) var secondAttribute: NSLayoutAttribute
+  public internal(set) var relation: LayoutRelation
+  public internal(set) var firstAttribute: LayoutAttribute
+  public internal(set) var secondAttribute: LayoutAttribute
   
   private var _enabled = true
   public var enabled: Bool {
