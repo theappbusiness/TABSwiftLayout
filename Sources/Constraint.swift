@@ -274,7 +274,7 @@ public struct Constraint: ConstraintDefinition {
         attribute: self.secondAttribute,
         multiplier: self.multiplier,
         constant: self.constant)
-        self._constraint?.priority = self.priority
+      self._constraint?.priority = self.priority
     }
     
     return self._constraint!
