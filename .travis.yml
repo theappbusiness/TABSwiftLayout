@@ -2,7 +2,7 @@ os:
   - osx
 
 language: generic
-osx_image: xcode8
+osx_image: xcode9.2
 script:
   - xcodebuild -showsdks
-  - xcodebuild -scheme TABSwiftLayout -configuration Debug -sdk iphonesimulator10.0 -destination "OS=10.0,name=iPhone 6s Plus"
+  - xcodebuild -scheme TABSwiftLayout -configuration Debug -sdk iphonesimulator11.0 -destination "OS=11.0,name=iPhone 6s Plus"
