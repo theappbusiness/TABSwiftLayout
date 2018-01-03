@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.0.0
+
+- Updated to Swift 4.0
+
 ## 2.0.1
 
 - Added @discardableResult to Layout.swift functions  
