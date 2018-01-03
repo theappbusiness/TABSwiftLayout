@@ -63,7 +63,7 @@ extension View {
    - returns: The constaints that were added to this view
    */
   @discardableResult
-  public func pin(edges: EdgeMask, toView view: View, relation: NSLayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     if edges.contains(.top) {
@@ -97,7 +97,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: NSLayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
+  public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
     constraint.secondView = view
@@ -166,7 +166,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, relatedBy relation: NSLayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
+  public func size(axis: Axis, relatedBy relation: LayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
     var constraint = Constraint(view: self)
     
     constraint.firstAttribute = sizeAttribute(axis: axis)
@@ -221,7 +221,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(width: CGFloat, height: CGFloat, relation: NSLayoutRelation = .equal, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func size(width: CGFloat, height: CGFloat, relation: LayoutRelation = .equal, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
     let horizontal = size(axis: .horizontal, relatedBy: relation, size: width, priority: priority)
     let vertical = size(axis: .vertical, relatedBy: relation, size: height, priority: priority)
     return [horizontal, vertical]
