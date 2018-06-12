@@ -11,7 +11,11 @@ import XCTest
 
 class LayoutTests: XCTestCase {
   
-  private let testPriority = LayoutPriority(rawValue: 751)
+  private var testPriority: LayoutPriority!
+  
+  override func setUp() {
+    testPriority = LayoutPriority(Float(arc4random_uniform(1001)))
+  }
   
   private func simpleViewHierarchy() -> (UIView, UIView) {
     let superview = UIView()
