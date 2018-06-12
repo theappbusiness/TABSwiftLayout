@@ -10,15 +10,12 @@
 		395175ED1D7DA0F00077541C /* TABSwiftLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 395175EC1D7DA0F00077541C /* TABSwiftLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		395175F81D7DA1060077541C /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F51D7DA1060077541C /* Layout.swift */; };
 		395175FC1D7DA1FF0077541C /* LayoutDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F61D7DA1060077541C /* LayoutDefines.swift */; };
-		395175FD1D7DA34E0077541C /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F41D7DA1060077541C /* Constraint.swift */; };
 		399583281D88534200BCC40E /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399583271D88534200BCC40E /* Deprecations.swift */; };
 		AB03825A20CEAB7800762187 /* TABSwiftLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395175E91D7DA0F00077541C /* TABSwiftLayout.framework */; };
 		AB03826320CEABB100762187 /* LayoutDefinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03826020CEABB000762187 /* LayoutDefinesTests.swift */; };
-		AB03826420CEABB100762187 /* ConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03826120CEABB100762187 /* ConstraintTests.swift */; };
 		AB03826520CEABB100762187 /* LayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03826220CEABB100762187 /* LayoutTests.swift */; };
 		AB0CD2FB1FED38D900992DFA /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399583271D88534200BCC40E /* Deprecations.swift */; };
 		AB0CD2FC1FED38D900992DFA /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F51D7DA1060077541C /* Layout.swift */; };
-		AB0CD2FD1FED38D900992DFA /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F41D7DA1060077541C /* Constraint.swift */; };
 		AB0CD2FE1FED38D900992DFA /* LayoutDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F61D7DA1060077541C /* LayoutDefines.swift */; };
 		AB0CD2FF1FED38F600992DFA /* TABSwiftLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 395175EC1D7DA0F00077541C /* TABSwiftLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB0CD3011FED3A0E00992DFA /* PlatformDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0CD3001FED3A0E00992DFA /* PlatformDefinitions.swift */; };
@@ -39,14 +36,12 @@
 		395175E91D7DA0F00077541C /* TABSwiftLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TABSwiftLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		395175EC1D7DA0F00077541C /* TABSwiftLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TABSwiftLayout.h; sourceTree = "<group>"; };
 		395175EE1D7DA0F00077541C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		395175F41D7DA1060077541C /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		395175F51D7DA1060077541C /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		395175F61D7DA1060077541C /* LayoutDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDefines.swift; sourceTree = "<group>"; };
 		399583271D88534200BCC40E /* Deprecations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
 		AB03825520CEAB7800762187 /* TABSwiftLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TABSwiftLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB03825920CEAB7800762187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB03826020CEABB000762187 /* LayoutDefinesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDefinesTests.swift; sourceTree = "<group>"; };
-		AB03826120CEABB100762187 /* ConstraintTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintTests.swift; sourceTree = "<group>"; };
 		AB03826220CEABB100762187 /* LayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutTests.swift; sourceTree = "<group>"; };
 		AB0CD2F31FED38D000992DFA /* TABSwiftLayoutMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TABSwiftLayoutMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0CD3001FED3A0E00992DFA /* PlatformDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDefinitions.swift; sourceTree = "<group>"; };
@@ -104,7 +99,6 @@
 				399583271D88534200BCC40E /* Deprecations.swift */,
 				AB0CD3001FED3A0E00992DFA /* PlatformDefinitions.swift */,
 				395175F51D7DA1060077541C /* Layout.swift */,
-				395175F41D7DA1060077541C /* Constraint.swift */,
 				395175F61D7DA1060077541C /* LayoutDefines.swift */,
 			);
 			path = Sources;
@@ -122,7 +116,6 @@
 		AB03825620CEAB7800762187 /* TABSwiftLayoutTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB03826120CEABB100762187 /* ConstraintTests.swift */,
 				AB03826020CEABB000762187 /* LayoutDefinesTests.swift */,
 				AB03826220CEABB100762187 /* LayoutTests.swift */,
 				AB03825920CEAB7800762187 /* Info.plist */,
@@ -278,7 +271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				395175FD1D7DA34E0077541C /* Constraint.swift in Sources */,
 				395175F81D7DA1060077541C /* Layout.swift in Sources */,
 				399583281D88534200BCC40E /* Deprecations.swift in Sources */,
 				AB0CD3011FED3A0E00992DFA /* PlatformDefinitions.swift in Sources */,
@@ -292,7 +284,6 @@
 			files = (
 				AB03826320CEABB100762187 /* LayoutDefinesTests.swift in Sources */,
 				AB03826520CEABB100762187 /* LayoutTests.swift in Sources */,
-				AB03826420CEABB100762187 /* ConstraintTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +291,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB0CD2FD1FED38D900992DFA /* Constraint.swift in Sources */,
 				AB0CD2FB1FED38D900992DFA /* Deprecations.swift in Sources */,
 				AB0CD2FE1FED38D900992DFA /* LayoutDefines.swift in Sources */,
 				AB0CD3021FED3A0E00992DFA /* PlatformDefinitions.swift in Sources */,

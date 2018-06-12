@@ -120,7 +120,7 @@ public extension View {
 /**
  *  Defines various constraint traits (bitmask) that define the type of constraints applied to a view.
  */
-@available(*, deprecated:3.0.0)
+@available(*, deprecated:4.0.0)
 public struct ConstraintsTraitMask: OptionSet {
   public let rawValue: Int
   public init(rawValue: Int) { self.rawValue = rawValue }
@@ -165,7 +165,7 @@ public struct ConstraintsTraitMask: OptionSet {
 public extension View {
   
   /// Returns all constraints relevant to this view
-  @available(*, deprecated:3.0.0)
+  @available(*, deprecated:4.0.0)
   public var viewConstraints: [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
@@ -193,7 +193,7 @@ public extension View {
    
    - returns: An array of constraints. If no constraints exist, an empty array is returned. This method never returns nil
    */
-  @available(*, deprecated:3.0.0)
+  @available(*, deprecated:4.0.0)
   public func constraints(forTrait trait: ConstraintsTraitMask) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
@@ -225,7 +225,7 @@ public extension View {
    
    - returns: True if a constrait exists, false otherwise
    */
-  @available(*, deprecated:3.0.0)
+  @available(*, deprecated:4.0.0)
   public func contains(trait: ConstraintsTraitMask) -> Bool {
     var traits = ConstraintsTraitMask.None
     
@@ -238,8 +238,8 @@ public extension View {
   
 }
 
-public extension ConstraintDefinition {
-  @available(*, deprecated:3.0.0)
+public extension NSLayoutConstraint {
+  @available(*, deprecated:4.0.0)
   public var trait: ConstraintsTraitMask {
     let left = self.firstAttribute == .left || self.firstAttribute == .leading
     let right = self.firstAttribute == .right || self.firstAttribute == .trailing
@@ -266,5 +266,15 @@ public extension ConstraintDefinition {
     return .None
   }
 }
+
+/// A required constraint.  Do not exceed this.
+@available(*, deprecated:3.0.0, renamed: "LayoutPriority.required")
+public let LayoutPriorityRequired: LayoutPriority = LayoutPriority(1000)
+/// This is the priority level with which a button resists compressing its content.
+@available(*, deprecated:3.0.0, renamed: "LayoutPriority.defaultHigh")
+public let LayoutPriorityDefaultHigh: LayoutPriority = LayoutPriority(750)
+/// This is the priority level at which a button hugs its contents horizontally.
+@available(*, deprecated:3.0.0, renamed: "LayoutPriority.defaultLow")
+public let LayoutPriorityDefaultLow: LayoutPriority = LayoutPriority(250)
 
 

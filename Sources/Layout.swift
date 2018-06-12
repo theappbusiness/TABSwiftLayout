@@ -63,7 +63,7 @@ extension View {
    - returns: The constaints that were added to this view
    */
   @discardableResult
-  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     if edges.contains(.top) {
@@ -97,19 +97,17 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.secondView = view
-    constraint.firstAttribute = edgeAttribute(edge: edge)
-    constraint.secondAttribute = edgeAttribute(edge: toEdge)
-    constraint.constant = edge == .right || toEdge == .right || edge == .bottom || toEdge == .bottom ? -1 * margin : margin
-    constraint.relation = relation
+  public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: edgeAttribute(edge: edge),
+                                        relatedBy: relation,
+                                        toItem: view,
+                                        attribute: edgeAttribute(edge: toEdge),
+                                        multiplier: 1,
+                                        constant: edge == .right || toEdge == .right || edge == .bottom || toEdge == .bottom ? -1 * margin : margin)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
   }
   
   /**
@@ -122,18 +120,17 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.secondView = view
-    constraint.firstAttribute = centerAttribute(axis: axis)
-    constraint.secondAttribute = centerAttribute(axis: axis)
-    constraint.constant = offset
+  public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: centerAttribute(axis: axis),
+                                        relatedBy: .equal,
+                                        toItem: view,
+                                        attribute: centerAttribute(axis: axis),
+                                        multiplier: 1,
+                                        constant: offset)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
   }
   
   /**
@@ -146,7 +143,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, ofViews views: [View], ratio: CGFloat = 1, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func size(axis: Axis, ofViews views: [View], ratio: CGFloat = 1, priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for view: View in views {
@@ -166,18 +163,17 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, relatedBy relation: LayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.firstAttribute = sizeAttribute(axis: axis)
-    constraint.secondAttribute = sizeAttribute(axis: axis)
-    constraint.relation = relation
-    constraint.constant = size
+  public func size(axis: Axis, relatedBy relation: LayoutRelation, size: CGFloat, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: sizeAttribute(axis: axis),
+                                        relatedBy: relation,
+                                        toItem: nil,
+                                        attribute: .notAnAttribute,
+                                        multiplier: 1,
+                                        constant: size)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
   }
   
   /**
@@ -191,18 +187,17 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.secondView = view
-    constraint.firstAttribute = sizeAttribute(axis: axis)
-    constraint.secondAttribute = sizeAttribute(axis: otherAxis)
-    constraint.multiplier = ratio
+  public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: sizeAttribute(axis: axis),
+                                        relatedBy: .equal,
+                                        toItem: view,
+                                        attribute: sizeAttribute(axis: otherAxis),
+                                        multiplier: ratio,
+                                        constant: 0)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
   }
   
 }
@@ -221,7 +216,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(width: CGFloat, height: CGFloat, relation: LayoutRelation = .equal, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func size(width: CGFloat, height: CGFloat, relation: LayoutRelation = .equal, priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     let horizontal = size(axis: .horizontal, relatedBy: relation, size: width, priority: priority)
     let vertical = size(axis: .vertical, relatedBy: relation, size: height, priority: priority)
     return [horizontal, vertical]
