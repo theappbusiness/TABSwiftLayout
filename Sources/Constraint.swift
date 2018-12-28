@@ -262,7 +262,7 @@ public struct Constraint: ConstraintDefinition {
   
   public mutating func constraint() -> NSLayoutConstraint {
     if self._constraint == nil {
-      self._constraint = NSLayoutConstraint(
+      let constraint = NSLayoutConstraint(
         item: self.firstView,
         attribute: firstAttribute,
         relatedBy: self.relation,
@@ -270,7 +270,8 @@ public struct Constraint: ConstraintDefinition {
         attribute: self.secondAttribute,
         multiplier: self.multiplier,
         constant: self.constant)
-      self._constraint?.priority = self.priority
+      constraint.priority = self.priority
+      self._constraint = constraint
     }
     
     return self._constraint!

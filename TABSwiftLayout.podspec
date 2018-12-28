@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.summary      = 'Provides a flexible, yet minimal API for dealing with Auto Layout programatically'
   s.source       = { :git => 'https://github.com/theappbusiness/TABSwiftLayout.git', :tag => s.version.to_s }
   s.source_files = 'Sources/**/*.swift'
-  s.swift_version = '4.0'
+  s.swift_version = '4.2'
 end

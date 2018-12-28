@@ -16,6 +16,6 @@
   import UIKit
   public typealias View = UIView
   public typealias LayoutPriority = UILayoutPriority
-  public typealias LayoutAttribute = NSLayoutAttribute
-  public typealias LayoutRelation = NSLayoutRelation
+  public typealias LayoutAttribute = NSLayoutConstraint.Attribute
+  public typealias LayoutRelation = NSLayoutConstraint.Relation
 #endif
