@@ -113,6 +113,21 @@ extension View {
   }
   
   /**
+   Pins a single edge to the same edge of another view
+   
+   - parameter edge:   The edge to pin
+   - parameter relation: The relation for this pinning, equal, greaterThanOrEqual, lessThanOrEqual
+   - parameter view:   The second view to pin to
+   - parameter margin: The margin to apply to this constraint
+   
+   - returns: The constraint that was added
+   */
+  @discardableResult
+  public func pin(edge: Edge, toView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    return pin(edge: edge, toEdge: edge, ofView: view, relation: relation, margin: margin, priority: priority)
+  }
+  
+  /**
    Aligns this views center to another view
    
    - parameter axis:   The axis to align
@@ -200,6 +215,20 @@ extension View {
     constraint.priority = priority
     constraint.isActive = true
     return constraint
+  }
+  
+  /**
+   Sizes this view's axis relative to the same axis of another view
+   
+   - parameter axis:      The axis to size on self, and reference on the second view
+   - parameter view:      The second view to reference
+   - parameter ratio:     The ratio to apply to this sizing. (e.g. 0.5 would size this view by 50% of the second view's edge)
+   
+   - returns: The constraint that was added
+   */
+  @discardableResult
+  public func size(axis: Axis, toView view: View, ratio: CGFloat = 1, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    return size(axis: axis, relativeTo: axis, ofView: view, ratio: ratio, priority: priority)
   }
   
 }

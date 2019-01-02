@@ -58,6 +58,22 @@ class LayoutTests: XCTestCase {
     XCTAssertEqual(view.constraints.count, 0)
   }
   
+  func testPinSameEdge() {
+    let constraint = view.pin(edge: .left, toView: superview, relation: .lessThanOrEqual, margin: 30, priority: testPriority)
+    XCTAssertEqual(constraint.firstAttribute, .left)
+    XCTAssertEqual(constraint.firstItem as? UIView, view)
+    XCTAssertEqual(constraint.secondAttribute, .left)
+    XCTAssertEqual(constraint.secondItem as? UIView, superview)
+    XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+    XCTAssertEqual(constraint.constant, 30)
+    XCTAssertEqual(constraint.multiplier, 1)
+    XCTAssertEqual(constraint.priority, testPriority)
+    XCTAssertTrue(constraint.isActive)
+    
+    XCTAssertEqual(superview.constraints, [constraint])
+    XCTAssertEqual(view.constraints.count, 0)
+  }
+  
   func testAlignAxis() {
     let constraint = view.align(axis: .horizontal, relativeTo: superview, offset: 20, priority: testPriority)
     XCTAssertEqual(constraint.firstAttribute, .centerX)
@@ -131,6 +147,23 @@ class LayoutTests: XCTestCase {
     
     XCTAssertEqual(view.constraints, [constraint])
     XCTAssertEqual(superview.constraints.count, 0)
+  }
+  
+  func testSizeSameAxis() {
+    let constraint = view.size(axis: .vertical, toView: superview, ratio: 0.5, priority: testPriority)
+    
+    XCTAssertEqual(constraint.firstAttribute, .height)
+    XCTAssertEqual(constraint.firstItem as? UIView, view)
+    XCTAssertEqual(constraint.secondAttribute, .height)
+    XCTAssertEqual(constraint.secondItem as? UIView, superview)
+    XCTAssertEqual(constraint.constant, 0)
+    XCTAssertEqual(constraint.multiplier, 0.5)
+    XCTAssertEqual(constraint.relation, .equal)
+    XCTAssertEqual(constraint.priority, testPriority)
+    XCTAssertTrue(constraint.isActive)
+    
+    XCTAssertEqual(superview.constraints, [constraint])
+    XCTAssertEqual(view.constraints.count, 0)
   }
   
   func testSizeBothAxisToConstant() {
