@@ -106,6 +106,9 @@ public struct EdgeMargins {
     self.init(all: 0)
   }
   
+  /// An instance where all the edges are zero
+  public static let zero = EdgeMargins()
+  
   /**
   Initializes an instance with all edge margins defined with the same value
   
@@ -117,6 +120,17 @@ public struct EdgeMargins {
     self.init(top: all, left: all, bottom: all, right: all)
   }
   
+  /**
+   Initializes an instance with top and bottom edge margins defined with one value, and left and right edge margins defined with another.
+   
+   - parameter horizontal: The margin for the left and right edges
+   - parameter vertical: The margin for the top and bottom edges
+   
+   - returns: An EdgeMargins instance with its horizontal edges defined equally and vertical edges defined equally
+   */
+  public init(horizontal: CGFloat, vertical: CGFloat) {
+    self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
+  }
   
   /**
   Initializes an instance with all edge margins defined

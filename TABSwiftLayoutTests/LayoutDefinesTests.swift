@@ -66,6 +66,21 @@ class LayoutDefinesTests: XCTestCase {
     XCTAssertEqual(margins.right, 4)
   }
   
+  func testEdgeMarginsHorizontalAndVerticalInit() {
+    let margins = EdgeMargins(horizontal: 7, vertical: 8)
+    XCTAssertEqual(margins.top, 8)
+    XCTAssertEqual(margins.left, 7)
+    XCTAssertEqual(margins.bottom, 8)
+    XCTAssertEqual(margins.right, 7)
+  }
+  
+  func testEdgeMarginsZero() {
+    let margins = EdgeMargins.zero
+    XCTAssertEqual(margins.top, 0)
+    XCTAssertEqual(margins.left, 0)
+    XCTAssertEqual(margins.bottom, 0)
+    XCTAssertEqual(margins.right, 0)
+  }
   
   func testSizeAttributeConversion() {
     XCTAssertEqual(Axis.horizontal.sizeAttribute, .width)

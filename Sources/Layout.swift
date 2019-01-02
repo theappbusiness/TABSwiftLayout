@@ -64,7 +64,7 @@ extension View {
    - returns: The constraints that were added to this view
    */
   @discardableResult
-  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
+  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = .zero, priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     if edges.contains(.top) {
