@@ -165,7 +165,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, relatedBy relation: LayoutRelation, size: CGFloat, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+  public func size(axis: Axis, relatedBy relation: LayoutRelation = .equal, size: CGFloat, priority: LayoutPriority = .required) -> NSLayoutConstraint {
     let constraint = NSLayoutConstraint(item: self,
                                         attribute: sizeAttribute(axis: axis),
                                         relatedBy: relation,
