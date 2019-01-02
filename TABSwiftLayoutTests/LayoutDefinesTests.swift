@@ -68,19 +68,19 @@ class LayoutDefinesTests: XCTestCase {
   
   
   func testSizeAttributeConversion() {
-    XCTAssertEqual(sizeAttribute(axis: .horizontal), .width)
-    XCTAssertEqual(sizeAttribute(axis: .vertical), .height)
+    XCTAssertEqual(Axis.horizontal.sizeAttribute, .width)
+    XCTAssertEqual(Axis.vertical.sizeAttribute, .height)
   }
   
   func testCenterAttributeConversion() {
-    XCTAssertEqual(centerAttribute(axis: .horizontal), .centerX)
-    XCTAssertEqual(centerAttribute(axis: .vertical), .centerY)
+    XCTAssertEqual(Axis.horizontal.centerAttribute, .centerX)
+    XCTAssertEqual(Axis.vertical.centerAttribute, .centerY)
   }
   
   func testEdgeAttributeConversion() {
-    XCTAssertEqual(edgeAttribute(edge: .top), .top)
-    XCTAssertEqual(edgeAttribute(edge: .left), .left)
-    XCTAssertEqual(edgeAttribute(edge: .bottom), .bottom)
-    XCTAssertEqual(edgeAttribute(edge: .right), .right)
+    XCTAssertEqual(Edge.top.attribute, .top)
+    XCTAssertEqual(Edge.left.attribute, .left)
+    XCTAssertEqual(Edge.bottom.attribute, .bottom)
+    XCTAssertEqual(Edge.right.attribute, .right)
   }
 }

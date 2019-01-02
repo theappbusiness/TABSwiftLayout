@@ -65,25 +65,25 @@ public struct EdgeMask: OptionSet {
   public init(rawValue: Int) { self.rawValue = rawValue }
   
   /// Defines a top edge
-  public static var top: EdgeMask   { return EdgeMask(rawValue: 1 << 0) }
+  public static let top = EdgeMask(rawValue: 1 << 0)
   
   /// Defines a left edge
-  public static var left: EdgeMask  { return EdgeMask(rawValue: 1 << 1) }
+  public static let left = EdgeMask(rawValue: 1 << 1)
   
   /// Defines a bottom edge
-  public static var bottom: EdgeMask   { return EdgeMask(rawValue: 1 << 2) }
+  public static let bottom = EdgeMask(rawValue: 1 << 2)
   
   /// Defines a right edge
-  public static var right: EdgeMask  { return EdgeMask(rawValue: 1 << 3) }
+  public static let right = EdgeMask(rawValue: 1 << 3)
   
   /// Defines a left and right edge
-  public static var leftAndRight: EdgeMask  { return [left, right] }
+  public static let leftAndRight: EdgeMask = [left, right]
   
   /// Defines a top and bottom edge
-  public static var topAndBottom: EdgeMask { return [top, bottom] }
+  public static let topAndBottom: EdgeMask = [top, bottom]
   
   /// Defines all edges
-  public static var all: EdgeMask { return [left, right, top, bottom] }
+  public static let all: EdgeMask = [left, right, top, bottom]
 }
 
 /**
@@ -136,58 +136,61 @@ public struct EdgeMargins {
   }
 }
 
+extension Axis {
+  
+  /**
+  Converts an Axis to its associated sizing attribute
 
-/**
-Converts an Axis to its associated sizing attribute
+  - parameter axis: The axis to convert
 
-- parameter axis: The axis to convert
+  - returns: The associated LayoutAttribute
+  */
+  var sizeAttribute: LayoutAttribute {
+    switch self {
+    case .horizontal:
+      return .width
+    case .vertical:
+      return .height
+    }
+  }
 
-- returns: The associated LayoutAttribute
-*/
-func sizeAttribute(axis: Axis) -> LayoutAttribute {
-  switch axis {
-  case .horizontal:
-    return .width
-  case .vertical:
-    return .height
+  /**
+  Converts an Axis to its associated alignment attribute
+
+  - parameter axis: The axis to convert
+
+  - returns: The associated LayoutAttribute
+  */
+  var centerAttribute: LayoutAttribute {
+    switch self {
+    case .horizontal:
+      return .centerX
+    case .vertical:
+      return .centerY
+    }
   }
 }
 
-/**
-Converts an Axis to its associated alignment attribute
+extension Edge {
+  /**
+  Converts an Edge to its associated edge attribute
 
-- parameter axis: The axis to convert
+  - parameter edge: The edge to convert
 
-- returns: The associated LayoutAttribute
-*/
-func centerAttribute(axis: Axis) -> LayoutAttribute {
-  switch axis {
-  case .horizontal:
-    return .centerX
-  case .vertical:
-    return .centerY
+  - returns: The associated LayoutAttribute
+  */
+  var attribute: LayoutAttribute {
+    switch self {
+    case .top:
+      return .top
+    case .left:
+      return .left
+    case .bottom:
+      return .bottom
+    case .right:
+      return .right
+    }
   }
+
 }
-
-/**
-Converts an Edge to its associated edge attribute
-
-- parameter edge: The edge to convert
-
-- returns: The associated LayoutAttribute
-*/
-func edgeAttribute(edge: Edge) -> LayoutAttribute {
-  switch edge {
-  case .top:
-    return .top
-  case .left:
-    return .left
-  case .bottom:
-    return .bottom
-  case .right:
-    return .right
-  }
-}
-
-
 

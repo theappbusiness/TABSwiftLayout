@@ -101,10 +101,10 @@ extension View {
   @discardableResult
   public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
     let constraint = NSLayoutConstraint(item: self,
-                                        attribute: edgeAttribute(edge: edge),
+                                        attribute: edge.attribute,
                                         relatedBy: relation,
                                         toItem: view,
-                                        attribute: edgeAttribute(edge: toEdge),
+                                        attribute: toEdge.attribute,
                                         multiplier: 1,
                                         constant: edge == .right || toEdge == .right || edge == .bottom || toEdge == .bottom ? -1 * margin : margin)
     constraint.priority = priority
@@ -124,10 +124,10 @@ extension View {
   @discardableResult
   public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
     let constraint = NSLayoutConstraint(item: self,
-                                        attribute: centerAttribute(axis: axis),
+                                        attribute: axis.centerAttribute,
                                         relatedBy: .equal,
                                         toItem: view,
-                                        attribute: centerAttribute(axis: axis),
+                                        attribute: axis.centerAttribute,
                                         multiplier: 1,
                                         constant: offset)
     constraint.priority = priority
@@ -167,7 +167,7 @@ extension View {
   @discardableResult
   public func size(axis: Axis, relatedBy relation: LayoutRelation = .equal, size: CGFloat, priority: LayoutPriority = .required) -> NSLayoutConstraint {
     let constraint = NSLayoutConstraint(item: self,
-                                        attribute: sizeAttribute(axis: axis),
+                                        attribute: axis.sizeAttribute,
                                         relatedBy: relation,
                                         toItem: nil,
                                         attribute: .notAnAttribute,
@@ -191,10 +191,10 @@ extension View {
   @discardableResult
   public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = .required) -> NSLayoutConstraint {
     let constraint = NSLayoutConstraint(item: self,
-                                        attribute: sizeAttribute(axis: axis),
+                                        attribute: axis.sizeAttribute,
                                         relatedBy: .equal,
                                         toItem: view,
-                                        attribute: sizeAttribute(axis: otherAxis),
+                                        attribute: otherAxis.sizeAttribute,
                                         multiplier: ratio,
                                         constant: 0)
     constraint.priority = priority
