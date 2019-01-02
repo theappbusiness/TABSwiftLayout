@@ -98,4 +98,16 @@ class LayoutDefinesTests: XCTestCase {
     XCTAssertEqual(Edge.bottom.attribute, .bottom)
     XCTAssertEqual(Edge.right.attribute, .right)
   }
+  
+  func testLayoutPriorityFloatLiteral() {
+    let constraint = NSLayoutConstraint()
+    constraint.priority = 455.0
+    XCTAssertEqual(constraint.priority.rawValue, 455.0)
+  }
+  
+  func testLayoutPriorityIntegerLiteral() {
+    let constraint = NSLayoutConstraint()
+    constraint.priority = 655
+    XCTAssertEqual(constraint.priority.rawValue, 655.0)
+  }
 }

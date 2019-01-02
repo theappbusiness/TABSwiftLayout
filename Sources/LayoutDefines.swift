@@ -208,3 +208,12 @@ extension Edge {
 
 }
 
+extension LayoutPriority: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
+  public init(floatLiteral value: Float) {
+    self.init(value)
+  }
+  
+  public init(integerLiteral value: Int) {
+    self.init(Float(value))
+  }
+}
