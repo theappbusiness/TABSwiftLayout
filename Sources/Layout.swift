@@ -57,10 +57,11 @@ extension View {
    Pins the edges of 2 associated views
    
    - parameter edges:  The edges (bitmask) to pin
+   - parameter relation: The relation for this pinning, equal, greaterThanOrEqual, lessThanOrEqual
    - parameter view:   The second view to pin to
    - parameter margins: The margins to apply for each applicable edge
    
-   - returns: The constaints that were added to this view
+   - returns: The constraints that were added to this view
    */
   @discardableResult
   public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
@@ -91,6 +92,7 @@ extension View {
    
    - parameter edge:   The edge of this view to pin
    - parameter toEdge: The edge of the second view to pin
+   - parameter relation: The relation for this pinning, equal, greaterThanOrEqual, lessThanOrEqual
    - parameter view:   The second view to pin to
    - parameter margin: The margin to apply to this constraint
    
@@ -253,7 +255,7 @@ extension View {
   }
   
   /**
-   Aligns the top edge of this view to the top of the specified view
+   Aligns the left edge of this view to the left of the specified view
    
    - parameter view: The reference view to align to
    
@@ -265,7 +267,7 @@ extension View {
   }
   
   /**
-   Aligns the top edge of this view to the top of the specified view
+   Aligns the bottom edge of this view to the bottom of the specified view
    
    - parameter view: The reference view to align to
    
@@ -277,7 +279,7 @@ extension View {
   }
   
   /**
-   Aligns the top edge of this view to the top of the specified view
+   Aligns the right edge of this view to the right of the specified view
    
    - parameter view: The reference view to align to
    
@@ -289,7 +291,7 @@ extension View {
   }
   
   /**
-   Aligns the center vertically to the specified view
+   Aligns the center horizontally to the specified view
    
    - parameter view: The reference view to align to
    
