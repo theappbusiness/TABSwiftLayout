@@ -24,6 +24,7 @@ class LayoutTests: XCTestCase {
   }
   
   func testPinEdges() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
     let constraints = view.pin(edges: .all, toView: superview, relation: .equal, margins: EdgeMargins(top: 1, left: 2, bottom: 3, right: 4), priority: testPriority)
     XCTAssertEqual(constraints.count, 4)
     XCTAssertTrue(constraints.contains { $0.firstAttribute == .top && $0.constant == 1 })
@@ -39,9 +40,15 @@ class LayoutTests: XCTestCase {
     }
     XCTAssertEqual(superview.constraints, constraints)
     XCTAssertEqual(view.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 2, y: 1, width: 294, height: 296))
   }
   
   func testPinEdge() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
     let constraint = view.pin(edge: .top, toEdge: .bottom, ofView: superview, relation: .greaterThanOrEqual, margin: 20, priority: testPriority)
     XCTAssertEqual(constraint.firstAttribute, .top)
     XCTAssertEqual(constraint.firstItem as? UIView, view)
@@ -56,25 +63,37 @@ class LayoutTests: XCTestCase {
     
     XCTAssertEqual(superview.constraints, [constraint])
     XCTAssertEqual(view.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 0, y: 280, width: 0, height: 0))
   }
   
   func testPinSameEdge() {
-    let constraint = view.pin(edge: .left, toView: superview, relation: .lessThanOrEqual, margin: 30, priority: testPriority)
-    XCTAssertEqual(constraint.firstAttribute, .left)
+    superview.bounds.size = CGSize(width: 300, height: 300)
+    let constraint = view.pin(edge: .right, toView: superview, relation: .lessThanOrEqual, margin: 30, priority: testPriority)
+    XCTAssertEqual(constraint.firstAttribute, .right)
     XCTAssertEqual(constraint.firstItem as? UIView, view)
-    XCTAssertEqual(constraint.secondAttribute, .left)
+    XCTAssertEqual(constraint.secondAttribute, .right)
     XCTAssertEqual(constraint.secondItem as? UIView, superview)
     XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-    XCTAssertEqual(constraint.constant, 30)
+    XCTAssertEqual(constraint.constant, -30)
     XCTAssertEqual(constraint.multiplier, 1)
     XCTAssertEqual(constraint.priority, testPriority)
     XCTAssertTrue(constraint.isActive)
     
     XCTAssertEqual(superview.constraints, [constraint])
     XCTAssertEqual(view.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 270, y: 0, width: 0, height: 0))
   }
   
   func testAlignAxis() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
     let constraint = view.align(axis: .horizontal, relativeTo: superview, offset: 20, priority: testPriority)
     XCTAssertEqual(constraint.firstAttribute, .centerX)
     XCTAssertEqual(constraint.firstItem as? UIView, view)
@@ -88,9 +107,15 @@ class LayoutTests: XCTestCase {
     
     XCTAssertEqual(superview.constraints, [constraint])
     XCTAssertEqual(view.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 170, y: 0, width: 0, height: 0))
   }
   
   func testSizeAxisOfViews() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
     let v1: UIView! = view
     let v2 = UIView()
     superview.addSubview(v2)
@@ -113,9 +138,16 @@ class LayoutTests: XCTestCase {
     XCTAssertEqual(superview.constraints, constraints)
     XCTAssertEqual(v1.constraints.count, 0)
     XCTAssertEqual(v2.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(v1.frame, CGRect(x: 0, y: 0, width: 150, height: 0))
+    XCTAssertEqual(v2.frame, CGRect(x: 0, y: 0, width: 150, height: 0))
   }
   
   func testSizeAxisToConstant() {
+    let horizontalConstraint = view.size(axis: .horizontal, size: 300)
     let constraint = view.size(axis: .vertical, relatedBy: .equal, size: 200, priority: testPriority)
     
     XCTAssertEqual(constraint.firstAttribute, .height)
@@ -128,11 +160,16 @@ class LayoutTests: XCTestCase {
     XCTAssertEqual(constraint.priority, testPriority)
     XCTAssertTrue(constraint.isActive)
     
-    XCTAssertEqual(view.constraints, [constraint])
+    XCTAssertEqual(Set(view.constraints), [constraint, horizontalConstraint])
     XCTAssertEqual(superview.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 300, height: 200))
   }
   
   func testSizeAxisRelativeToOtherAxis() {
+    let horizontalConstraint = view.size(axis: .horizontal, size: 300)
     let constraint = view.size(axis: .vertical, relativeTo: .horizontal, ofView: view, ratio: 0.5, priority: testPriority)
     
     XCTAssertEqual(constraint.firstAttribute, .height)
@@ -145,11 +182,16 @@ class LayoutTests: XCTestCase {
     XCTAssertEqual(constraint.priority, testPriority)
     XCTAssertTrue(constraint.isActive)
     
-    XCTAssertEqual(view.constraints, [constraint])
+    XCTAssertEqual(Set(view.constraints), [constraint, horizontalConstraint])
     XCTAssertEqual(superview.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 300, height: 150))
   }
   
   func testSizeSameAxis() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
     let constraint = view.size(axis: .vertical, toView: superview, ratio: 0.5, priority: testPriority)
     
     XCTAssertEqual(constraint.firstAttribute, .height)
@@ -164,6 +206,11 @@ class LayoutTests: XCTestCase {
     
     XCTAssertEqual(superview.constraints, [constraint])
     XCTAssertEqual(view.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 0, height: 150))
   }
   
   func testSizeBothAxisToConstant() {
@@ -182,6 +229,10 @@ class LayoutTests: XCTestCase {
     }
     XCTAssertEqual(view.constraints, constraints)
     XCTAssertEqual(superview.constraints.count, 0)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 200, height: 300))
   }
   
   func testAlignEdgesToView() {
@@ -204,6 +255,7 @@ class LayoutTests: XCTestCase {
       }
       view.align(edges: edgeMask, toView: superview)
       
+      XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
       let constraints = superview.constraints
       for edge in edges {
         XCTAssertTrue(constraints.contains { $0.firstAttribute == edge && $0.secondAttribute == edge})
@@ -225,6 +277,8 @@ class LayoutTests: XCTestCase {
   
   
   func testAlignHorizontally() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
+    let viewSize = view.size(width: 50, height: 50)
     let constraint = view.alignHorizontally(toView: superview)
     
     XCTAssertEqual(constraint.firstAttribute, .centerX)
@@ -238,10 +292,17 @@ class LayoutTests: XCTestCase {
     XCTAssertTrue(constraint.isActive)
     
     XCTAssertEqual(superview.constraints, [constraint])
-    XCTAssertEqual(view.constraints.count, 0)
+    XCTAssertEqual(view.constraints, viewSize)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 125, y: 0, width: 50, height: 50))
   }
   
   func testAlignVertically() {
+    superview.bounds.size = CGSize(width: 300, height: 300)
+    let viewSize = view.size(width: 60, height: 60)
     let constraint = view.alignVertically(toView: superview)
     
     XCTAssertEqual(constraint.firstAttribute, .centerY)
@@ -255,7 +316,12 @@ class LayoutTests: XCTestCase {
     XCTAssertTrue(constraint.isActive)
     
     XCTAssertEqual(superview.constraints, [constraint])
-    XCTAssertEqual(view.constraints.count, 0)
+    XCTAssertEqual(view.constraints, viewSize)
+    
+    superview.layoutIfNeeded()
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(superview.bounds, CGRect(x: 0, y: 0, width: 300, height: 300))
+    XCTAssertEqual(view.frame, CGRect(x: 0, y: 120, width: 60, height: 60))
   }
   
   func testResetConstraints() {
