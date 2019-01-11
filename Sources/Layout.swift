@@ -100,6 +100,7 @@ extension View {
    */
   @discardableResult
   public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
     let constraint = NSLayoutConstraint(item: self,
                                         attribute: edge.attribute,
                                         relatedBy: relation,
@@ -138,6 +139,7 @@ extension View {
    */
   @discardableResult
   public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
     let constraint = NSLayoutConstraint(item: self,
                                         attribute: axis.centerAttribute,
                                         relatedBy: .equal,
@@ -181,6 +183,7 @@ extension View {
    */
   @discardableResult
   public func size(axis: Axis, relatedBy relation: LayoutRelation = .equal, size: CGFloat, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
     let constraint = NSLayoutConstraint(item: self,
                                         attribute: axis.sizeAttribute,
                                         relatedBy: relation,
@@ -205,6 +208,7 @@ extension View {
    */
   @discardableResult
   public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
     let constraint = NSLayoutConstraint(item: self,
                                         attribute: axis.sizeAttribute,
                                         relatedBy: .equal,
