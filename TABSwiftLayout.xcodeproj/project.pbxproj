@@ -10,11 +10,9 @@
 		395175ED1D7DA0F00077541C /* TABSwiftLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 395175EC1D7DA0F00077541C /* TABSwiftLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		395175F81D7DA1060077541C /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F51D7DA1060077541C /* Layout.swift */; };
 		395175FC1D7DA1FF0077541C /* LayoutDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F61D7DA1060077541C /* LayoutDefines.swift */; };
-		399583281D88534200BCC40E /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399583271D88534200BCC40E /* Deprecations.swift */; };
 		AB03825A20CEAB7800762187 /* TABSwiftLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395175E91D7DA0F00077541C /* TABSwiftLayout.framework */; };
 		AB03826320CEABB100762187 /* LayoutDefinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03826020CEABB000762187 /* LayoutDefinesTests.swift */; };
 		AB03826520CEABB100762187 /* LayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB03826220CEABB100762187 /* LayoutTests.swift */; };
-		AB0CD2FB1FED38D900992DFA /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399583271D88534200BCC40E /* Deprecations.swift */; };
 		AB0CD2FC1FED38D900992DFA /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F51D7DA1060077541C /* Layout.swift */; };
 		AB0CD2FE1FED38D900992DFA /* LayoutDefines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395175F61D7DA1060077541C /* LayoutDefines.swift */; };
 		AB0CD2FF1FED38F600992DFA /* TABSwiftLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 395175EC1D7DA0F00077541C /* TABSwiftLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,7 +36,6 @@
 		395175EE1D7DA0F00077541C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		395175F51D7DA1060077541C /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		395175F61D7DA1060077541C /* LayoutDefines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDefines.swift; sourceTree = "<group>"; };
-		399583271D88534200BCC40E /* Deprecations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
 		AB03825520CEAB7800762187 /* TABSwiftLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TABSwiftLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB03825920CEAB7800762187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB03826020CEABB000762187 /* LayoutDefinesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDefinesTests.swift; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 		395175FA1D7DA1940077541C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				399583271D88534200BCC40E /* Deprecations.swift */,
 				AB0CD3001FED3A0E00992DFA /* PlatformDefinitions.swift */,
 				395175F51D7DA1060077541C /* Layout.swift */,
 				395175F61D7DA1060077541C /* LayoutDefines.swift */,
@@ -228,6 +224,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 395175DF1D7DA0F00077541C;
@@ -272,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				395175F81D7DA1060077541C /* Layout.swift in Sources */,
-				399583281D88534200BCC40E /* Deprecations.swift in Sources */,
 				AB0CD3011FED3A0E00992DFA /* PlatformDefinitions.swift in Sources */,
 				395175FC1D7DA1FF0077541C /* LayoutDefines.swift in Sources */,
 			);
@@ -291,7 +287,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB0CD2FB1FED38D900992DFA /* Deprecations.swift in Sources */,
 				AB0CD2FE1FED38D900992DFA /* LayoutDefines.swift in Sources */,
 				AB0CD3021FED3A0E00992DFA /* PlatformDefinitions.swift in Sources */,
 				AB0CD2FC1FED38D900992DFA /* Layout.swift in Sources */,
