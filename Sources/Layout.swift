@@ -57,13 +57,14 @@ extension View {
    Pins the edges of 2 associated views
    
    - parameter edges:  The edges (bitmask) to pin
+   - parameter relation: The relation for this pinning, equal, greaterThanOrEqual, lessThanOrEqual
    - parameter view:   The second view to pin to
    - parameter margins: The margins to apply for each applicable edge
    
-   - returns: The constaints that were added to this view
+   - returns: The constraints that were added to this view
    */
   @discardableResult
-  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = EdgeMargins(), priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func pin(edges: EdgeMask, toView view: View, relation: LayoutRelation = .equal, margins: EdgeMargins = .zero, priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     if edges.contains(.top) {
@@ -91,25 +92,40 @@ extension View {
    
    - parameter edge:   The edge of this view to pin
    - parameter toEdge: The edge of the second view to pin
+   - parameter relation: The relation for this pinning, equal, greaterThanOrEqual, lessThanOrEqual
    - parameter view:   The second view to pin to
    - parameter margin: The margin to apply to this constraint
    
    - returns: The constraint that was added
    */
   @discardableResult
-  public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.secondView = view
-    constraint.firstAttribute = edgeAttribute(edge: edge)
-    constraint.secondAttribute = edgeAttribute(edge: toEdge)
-    constraint.constant = edge == .right || toEdge == .right || edge == .bottom || toEdge == .bottom ? -1 * margin : margin
-    constraint.relation = relation
+  public func pin(edge: Edge, toEdge: Edge, ofView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: edge.attribute,
+                                        relatedBy: relation,
+                                        toItem: view,
+                                        attribute: toEdge.attribute,
+                                        multiplier: 1,
+                                        constant: edge == .right || toEdge == .right || edge == .bottom || toEdge == .bottom ? -1 * margin : margin)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
+  }
+  
+  /**
+   Pins a single edge to the same edge of another view
+   
+   - parameter edge:   The edge to pin
+   - parameter relation: The relation for this pinning, equal, greaterThanOrEqual, lessThanOrEqual
+   - parameter view:   The second view to pin to
+   - parameter margin: The margin to apply to this constraint
+   
+   - returns: The constraint that was added
+   */
+  @discardableResult
+  public func pin(edge: Edge, toView view: View, relation: LayoutRelation = .equal, margin: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    return pin(edge: edge, toEdge: edge, ofView: view, relation: relation, margin: margin, priority: priority)
   }
   
   /**
@@ -122,18 +138,18 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.secondView = view
-    constraint.firstAttribute = centerAttribute(axis: axis)
-    constraint.secondAttribute = centerAttribute(axis: axis)
-    constraint.constant = offset
+  public func align(axis: Axis, relativeTo view: View, offset: CGFloat = 0, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: axis.centerAttribute,
+                                        relatedBy: .equal,
+                                        toItem: view,
+                                        attribute: axis.centerAttribute,
+                                        multiplier: 1,
+                                        constant: offset)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
   }
   
   /**
@@ -146,7 +162,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, ofViews views: [View], ratio: CGFloat = 1, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func size(axis: Axis, ofViews views: [View], ratio: CGFloat = 1, priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     
     for view: View in views {
@@ -166,18 +182,18 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, relatedBy relation: LayoutRelation, size: CGFloat, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.firstAttribute = sizeAttribute(axis: axis)
-    constraint.secondAttribute = sizeAttribute(axis: axis)
-    constraint.relation = relation
-    constraint.constant = size
+  public func size(axis: Axis, relatedBy relation: LayoutRelation = .equal, size: CGFloat, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: axis.sizeAttribute,
+                                        relatedBy: relation,
+                                        toItem: nil,
+                                        attribute: .notAnAttribute,
+                                        multiplier: 1,
+                                        constant: size)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
   }
   
   /**
@@ -191,18 +207,32 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = LayoutPriorityRequired) -> NSLayoutConstraint {
-    var constraint = Constraint(view: self)
-    
-    constraint.secondView = view
-    constraint.firstAttribute = sizeAttribute(axis: axis)
-    constraint.secondAttribute = sizeAttribute(axis: otherAxis)
-    constraint.multiplier = ratio
+  public func size(axis: Axis, relativeTo otherAxis: Axis, ofView view: View, ratio: CGFloat = 1, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    translatesAutoresizingMaskIntoConstraints = false
+    let constraint = NSLayoutConstraint(item: self,
+                                        attribute: axis.sizeAttribute,
+                                        relatedBy: .equal,
+                                        toItem: view,
+                                        attribute: otherAxis.sizeAttribute,
+                                        multiplier: ratio,
+                                        constant: 0)
     constraint.priority = priority
-    
-    let layoutConstraint = constraint.constraint()
-    NSLayoutConstraint.activate([layoutConstraint])
-    return layoutConstraint
+    constraint.isActive = true
+    return constraint
+  }
+  
+  /**
+   Sizes this view's axis relative to the same axis of another view
+   
+   - parameter axis:      The axis to size on self, and reference on the second view
+   - parameter view:      The second view to reference
+   - parameter ratio:     The ratio to apply to this sizing. (e.g. 0.5 would size this view by 50% of the second view's edge)
+   
+   - returns: The constraint that was added
+   */
+  @discardableResult
+  public func size(axis: Axis, toView view: View, ratio: CGFloat = 1, priority: LayoutPriority = .required) -> NSLayoutConstraint {
+    return size(axis: axis, relativeTo: axis, ofView: view, ratio: ratio, priority: priority)
   }
   
 }
@@ -221,7 +251,7 @@ extension View {
    - returns: The constraint that was added
    */
   @discardableResult
-  public func size(width: CGFloat, height: CGFloat, relation: LayoutRelation = .equal, priority: LayoutPriority = LayoutPriorityRequired) -> [NSLayoutConstraint] {
+  public func size(width: CGFloat, height: CGFloat, relation: LayoutRelation = .equal, priority: LayoutPriority = .required) -> [NSLayoutConstraint] {
     let horizontal = size(axis: .horizontal, relatedBy: relation, size: width, priority: priority)
     let vertical = size(axis: .vertical, relatedBy: relation, size: height, priority: priority)
     return [horizontal, vertical]
@@ -258,7 +288,7 @@ extension View {
   }
   
   /**
-   Aligns the top edge of this view to the top of the specified view
+   Aligns the left edge of this view to the left of the specified view
    
    - parameter view: The reference view to align to
    
@@ -270,7 +300,7 @@ extension View {
   }
   
   /**
-   Aligns the top edge of this view to the top of the specified view
+   Aligns the bottom edge of this view to the bottom of the specified view
    
    - parameter view: The reference view to align to
    
@@ -282,7 +312,7 @@ extension View {
   }
   
   /**
-   Aligns the top edge of this view to the top of the specified view
+   Aligns the right edge of this view to the right of the specified view
    
    - parameter view: The reference view to align to
    
@@ -294,7 +324,7 @@ extension View {
   }
   
   /**
-   Aligns the center vertically to the specified view
+   Aligns the center horizontally to the specified view
    
    - parameter view: The reference view to align to
    
