@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://www.theappbusiness.com'
   s.requires_arc = true
   s.summary      = 'Provides a flexible, yet minimal API for dealing with Auto Layout programatically'
-  s.source       = { :git => 'https://github.com/telegraph/TABSwiftLayout.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/theappbusiness/TABSwiftLayout.git', :tag => s.version.to_s }
   s.source_files = 'Sources/**/*.swift'
   s.swift_version = '4.2'
 end
